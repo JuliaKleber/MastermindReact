@@ -1,0 +1,168 @@
+body {
+  font-family: arial;
+  font-size: 18px;
+  background-color: white;
+  margin-top: 0px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#gap1 {
+  margin-bottom: 250px;
+}
+
+#gap2 {
+  position: fixed;
+  background-color: white;
+  color: white;
+  width: 350px;
+  height: 30px;
+}
+
+#six-colors {
+  position: fixed;
+  top: 30px;
+}
+
+#six-colors {
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  width: 300px;
+}
+
+.trial-visible {
+  width: 300px;
+  padding: 10px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.trial-not-visible {
+  display: none;
+}
+
+.color-not-selected {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+}
+
+.color-not-selected:hover {
+  border: 2px solid black;
+}
+
+.color-selected {
+  width: 100px;
+  height: 100px;
+  border: 3px solid black;
+}
+
+.input-field {
+  width: 75px;
+  height: 75px;
+  border: 1px solid black;
+  border-radius: 0px;
+  margin: 5px 0px 10px 0px;
+}
+
+.input-field:hover {
+  border: 2px solid black;
+}
+
+.send-button-visible {
+  border: 0px;
+  border-radius: 30px;
+  margin-top: 15px;
+  background-color: #4f30da;
+  color: white;
+  width: 130px;
+  height: 40px;
+  font-size: 18px;
+}
+
+.send-button-visible:hover {
+  background-color: rgb(40, 40, 190);
+}
+
+.send-button-invisible {
+  display: none;
+}
+
+#instruction {
+  padding: 0px 10px;
+  margin-bottom: 25px;
+  width: 300px;
+  height: 380px;
+  text-align: justify;
+  border-radius: 5px;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+}
+
+input {
+  border: 0px;
+  border-radius: 30px;
+  background-color: #4f30da;
+  color: white;
+  width: 130px;
+  height: 40px;
+  font-size: 18px;
+  text-align: center;
+}
+
+input:hover {
+  background-color: rgb(40, 40, 190);
+}
+
+h3 {
+  text-align: center;
+}
+
+b {
+  color: rgb(105, 1, 105);
+}
+
+@media only screen and (min-width: 1070px) {
+  main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 30px;
+  }
+
+  #trials {
+    position: absolute;
+    left: 260px;
+    top: 145px;
+  }
+
+  #six-colors {
+    width: 100px;
+    position: fixed;
+    top: 50px;
+    left: 50px;
+  }
+
+  #instruction {
+    position: fixed;
+    top: 170px;
+    left: 650px;
+  }
+
+  #gap1,
+  #gap2 {
+    display: none;
+  }
+}
