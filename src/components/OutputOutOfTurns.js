@@ -1,15 +1,14 @@
 import React from "react";
 
-function OutputOutOfTurns(props) {
-  const colorsSolution = props.colorsSolution;
+function OutputOutOfTurns({ colorsSolution }) {
   return (
-    <>
+    <div>
       <p>
         Die richtige Lösung ist
         <br />
         <b>{colorsSolution}</b>
       </p>
-    </>
+    </div>
   );
 }
 

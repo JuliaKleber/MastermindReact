@@ -1,45 +1,35 @@
 // Repräsentiert den numberTrial-ten Versuch.
-// Der Nutzer kann vier Farben in die Kästchen platzieren und
-// durch Klicken des "absenden" Buttons wird der
+// Der Nutzer kann vier Farben in die Kästchen platzieren.
+// Durch Klicken des "absenden" Buttons wird der
 // Lösungsversuch überprüft und eine entsprechende Nachricht ausgegeben.
 
 import React, { useState, useEffect } from "react";
-import OutputHowGoodWasYourProposal from "./OutputHowGoodWasYourProposal";
-import OutputSolutionFound from "./OutputSolutionFound";
-import OutputOutOfTurns from "./OutputOutOfTurns";
+import InputFields from "./InputFields";
+import CheckProposedSolutionButton from "./CheckProposedSolutionButton";
+import Output from "./Output";
+import QuestionPlayAgain from "./QuestionPlayAgain";
 
-function Trial(props) {
-  const numberTrial = props.numberTrial;
-  const [currentTrial, setCurrentTrial] = useState(props.currentTrial);
-  const [chosenColor, setChosenColor] = useState(props.chosenColor);
-  const solution = props.solution;
-  const numberTrials = props.numberTrials;
-  const [chosenColors, setChosenColors] = useState(Array(4).fill("white"));
+function Trial({
+  numberTrial,
+  currentTrial,
+  chosenColor,
+  solution,
+  numberTrials,
+  numberInputFields,
+  resetGame,
+  onResetGame,
+  onPlayAgain,
+  onIncremented,
+}) {
+  const [chosenColors, setChosenColors] = useState(
+    Array(numberInputFields).fill("white")
+  );
   const [proposalSent, setProposalSent] = useState(false);
-  const [output, setOutput] = useState("");
+  const [numberInRightPlace, setNumberInRightPlace] = useState(0);
+  const [numberInWrongPlace, setNumberInWrongPlace] = useState(0);
   const [endOfGame, setEndOfGame] = useState(false);
   const [playAgain, setPlayAgain] = useState(false);
   const [isShown, setIsShown] = useState(false);
-
-  // Wenn die props in App.js verändert werden,
-  // werden sie auch hier geändert.
-  useEffect(() => {
-    setCurrentTrial(props.currentTrial);
-  }, [props.currentTrial]);
-
-  useEffect(() => {
-    setChosenColor(props.chosenColor);
-  }, [props.chosenColor]);
-
-  // Setzt das Spiel zurück.
-  useEffect(() => {
-    if (props.resetGame === true) {
-      setChosenColors(Array(4).fill("white"));
-      setOutput("");
-      setProposalSent(false);
-      props.onResetGame(false);
-    }
-  }, [props.resetGame, props]);
 
   // Wenn sich der aktuelle Versuch ändert,
   // werden alle Versuche bis zum aktuellen Versuch angezeigt.
@@ -47,176 +37,67 @@ function Trial(props) {
     numberTrial <= currentTrial ? setIsShown(true) : setIsShown(false);
   }, [currentTrial, numberTrial]);
 
+  // Setzt das Spiel zurück.
+  useEffect(() => {
+    if (resetGame) {
+      setChosenColors(Array(numberInputFields).fill("white"));
+      setProposalSent(false);
+      onResetGame(false);
+    }
+  }, [resetGame, numberInputFields, onResetGame]);
+
   // Wenn der Nutzer noch mal spielen will,
   // wird die Info an App.js weitergegeben.
   useEffect(() => {
-    if (playAgain === true) {
-      props.onPlayAgain(true);
+    if (playAgain) {
       setEndOfGame(false);
       setPlayAgain(false);
+      onPlayAgain(true);
     }
-  }, [playAgain, props]);
-
-  // Wenn eine Kachel des Versuchs angeklickt wird,
-  // wird die chosenColor im Array chosenColors
-  // unter dem entsprechendem Index gespeichert.
-  function setColor(index) {
-    if (currentTrial === numberTrial) {
-      const newChosenColors = [...chosenColors];
-      newChosenColors[index] = chosenColor;
-      setChosenColors(newChosenColors);
-    }
-  }
-
-  // Prüft in der ersten for-Schleife wie viele Farben der vom Benutzer
-  // vorgeschlagenen Lösung an der richtigen Stelle sind und in der zweiten
-  // for-Schleife wie viele Farben an der falschen Stelle sind.
-  // Außerdem wird in der nachfolgenden Funktion generatureOutput
-  // eine entsprechende Textnachricht generiert.
-  function checkProposal(event) {
-    let inRightPlace = 0;
-    let inWrongPlace = 0;
-    let newSolution = solution;
-    let proposal = chosenColors;
-    for (let i = 3; i >= 0; i--) {
-      if (newSolution[i] === proposal[i]) {
-        inRightPlace += 1;
-        newSolution = [].concat(
-          newSolution.slice(0, i),
-          newSolution.slice(i + 1)
-        );
-        proposal = [].concat(proposal.slice(0, i), proposal.slice(i + 1));
-      }
-    }
-    for (let i = newSolution.length - 1; i >= 0; i--) {
-      for (let j = newSolution.length - 1; j >= 0; j--) {
-        if (newSolution[i] === proposal[j]) {
-          inWrongPlace += 1;
-          newSolution = [].concat(
-            newSolution.slice(0, i),
-            newSolution.slice(i + 1)
-          );
-          proposal = [].concat(proposal.slice(0, j), proposal.slice(j + 1));
-        }
-      }
-    }
-    generateOutput(inRightPlace, inWrongPlace);
-  }
-
-  function generateOutput(inRightPlace, inWrongPlace) {
-    // Falls alle vier Farben richtig sind, wird eine entsprechende
-    // Meldung ausgegeben und das Ende des Spiels ausgelöst.
-    let newOutput = "";
-    if (inRightPlace === 4) {
-      newOutput = (
-        <OutputSolutionFound
-          currentTrial={currentTrial}
-          chosenColors={chosenColors}
-        />
-      );
-      setOutput(newOutput);
-      setEndOfGame(true);
-      // Button wird ausgeblendet
-      setProposalSent(true);
-      return;
-    }
-    // Ansonsten wird die Anzahl der richtig platzierten Farben
-    // und der falsch platzierten Farben ausgegeben.
-    newOutput = (
-      <OutputHowGoodWasYourProposal
-        inRightPlace={inRightPlace}
-        inWrongPlace={inWrongPlace}
-      />
-    );
-    setOutput(newOutput);
-    // Falls es sich um den 8. Versuch handelt,
-    // wird das Ende des Spiels ausgelöst.
-    if (numberTrial === numberTrials) {
-      const solutionGerman = changeToGermanColors(solution);
-      newOutput = (
-        <>
-          <OutputHowGoodWasYourProposal
-            inRightPlace={inRightPlace}
-            inWrongPlace={inWrongPlace}
-          />
-          <OutputOutOfTurns colorsSolution={solutionGerman} />
-        </>
-      );
-      setOutput(newOutput);
-      setEndOfGame(true);
-    }
-    // SendButton wird ausgeblendet.
-    setProposalSent(true);
-    // CurrentTrial wird um eins erhöht.
-    props.onIncremented(currentTrial + 1);
-  }
-
-  // Wandelt die englischen Bezeichnungen
-  // der Farben in deutsche Bezeichnungen um.
-  function changeToGermanColors() {
-    let newSolution = [];
-    for (let color of solution) {
-      switch (color) {
-        case "yellow":
-          newSolution.push("gelb");
-          break;
-        case "orange":
-          newSolution.push("orange");
-          break;
-        case "red":
-          newSolution.push("rot");
-          break;
-        case "mediumorchid":
-          newSolution.push("lila");
-          break;
-        case "royalblue":
-          newSolution.push("blau");
-          break;
-        case "limegreen":
-          newSolution.push("grün");
-          break;
-        default:
-          break;
-      }
-    }
-    const stringSolution = newSolution.join(", ");
-    return stringSolution;
-  }
+  }, [playAgain, onPlayAgain]);
 
   return (
-    <div
-      className={isShown ? "trial-visible" : "trial-not-visible"}
-      id={"trial" + numberTrial}
-    >
+    <div className={isShown ? "trial-visible" : "trial-not-visible"}>
       <h3>{numberTrial}. Versuch</h3>
-      <div>
-        {chosenColors.map((color, index) => (
-          <button
-            className="input-field"
-            key={index}
-            style={{ backgroundColor: color }}
-            onClick={() => setColor(index)}
-          ></button>
-        ))}
-      </div>
-      <input
-        className={
-          proposalSent ? "send-button-invisible" : "send-button-visible"
-        }
-        value="absenden"
-        type="button"
-        onClick={() => checkProposal()}
+      <InputFields
+        currentTrial={currentTrial}
+        numberTrial={numberTrial}
+        chosenColor={chosenColor}
+        numberInputFields={numberInputFields}
+        onChosenColors={(newChosenColors) => setChosenColors(newChosenColors)}
+        resetGame={resetGame}
       />
-      {output}
-      {endOfGame && <p>Möchtest du noch mal spielen?</p>}{" "}
+      <CheckProposedSolutionButton
+        solution={solution}
+        chosenColors={chosenColors}
+        numberInputFields={numberInputFields}
+        currentTrial={currentTrial}
+        numberTrials={numberTrials}
+        resetGame={resetGame}
+        onNumberInRightPlace={(state) => setNumberInRightPlace(state)}
+        onNumberInWrongPlace={(state) => setNumberInWrongPlace(state)}
+        onProposalSent={(state) => setProposalSent(state)}
+        onEndOfGame={(state) => setEndOfGame(state)}
+        onIncremented={(state) => onIncremented(state)}
+      />
+      {proposalSent && (
+        <Output
+          numberInRightPlace={numberInRightPlace}
+          numberInWrongPlace={numberInWrongPlace}
+          numberInputFields={numberInputFields}
+          currentTrial={currentTrial}
+          numberTrial={numberTrial}
+          chosenColors={chosenColors}
+          numberTrials={numberTrials}
+          solution={solution}
+          proposalSent={proposalSent}
+        />
+      )}
       {endOfGame && (
-        <input
-          value="Ja"
-          onClick={() => setPlayAgain(true)}
-          type="button"
-        ></input>
+        <QuestionPlayAgain onPlayAgain={() => setPlayAgain(true)} />
       )}
     </div>
   );
 }
+
 export default Trial;

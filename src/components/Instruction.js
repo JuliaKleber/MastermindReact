@@ -4,18 +4,21 @@ import React from "react";
 
 function Instruction(props) {
   return (
-    <div id="instruction">
+    <div className="box" id="instruction">
       <h3>Spielanleitung für Mastermind</h3>
       <p>
-        Der Computer wählt zufällig vier Farben aus. Ziel ist es diese vier
-        Farben zu erraten. Farben können mehrfach in der Lösung vorkommen.
+        Der Computer wählt zufällig {props.numberInputFields} Farben aus. Ziel
+        ist es, diese Farben zu erraten. Farben können mehrfach in der Lösung
+        vorkommen.
       </p>
       <p>
-        Zum Setzen der Farben wähle eines der Farbfelder oben an. Dann können
-        die Farben unten bei den Versuchen gesetzt werden indem die weißen
-        Felder ausgewählt werden.
+        Zum Setzen der Farben wähle eines der {props.numberColors} Farbfelder
+        an. Dann kannst du die weißen Quadrate der Versuche einfärben, indem du
+        sie auswählst.
       </p>
-      <p>Du hast {props.numberTrials} Versuche um die Lösung zu finden.</p>
+      <p>
+        Du hast insgesamt {props.numberTrials} Versuche um die Lösung zu finden.
+      </p>
     </div>
   );
 }

@@ -1,13 +1,11 @@
 import React from "react";
 
-function OutputSolutionFound(props) {
+function OutputSolutionFound() {
   return (
-    <div>
-      <p>
-        <b>Herzlichen Glückwunsch!</b> <br /> Du hast die richtige Lösung
-        gefunden.
-      </p>
-    </div>
+    <p className="centered-text">
+      <b>Herzlichen Glückwunsch!</b> <br /> Du hast die richtige Lösung
+      gefunden.
+    </p>
   );
 }
 
