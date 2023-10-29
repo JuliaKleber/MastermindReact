@@ -1,10 +1,10 @@
 import React from "react";
 
-function QuestionPlayAgain({ onPlayAgain }) {
+function QuestionPlayAgain({ setIsPlayAgain }) {
   return (
     <div className="container">
       <p>Möchtest du noch mal spielen?</p>
-      <button onClick={() => onPlayAgain(true)}>Ja</button>
+      <button onClick={() => setIsPlayAgain(true)}>Ja</button>
     </div>
   );
 }

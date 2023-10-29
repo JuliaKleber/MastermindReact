@@ -3,21 +3,23 @@
 
 import React, { useState, useEffect } from "react";
 
-function SixColors({ colors, numberColors, resetGame, onColorSelect }) {
+function SixColors({ colors, numberColors, isPlayAgain, setCurrentColor }) {
   const [areButtonsSelected, setAreButtonsSelected] = useState(
     Array(numberColors).fill(false)
   );
 
   useEffect(() => {
-    resetGame && setAreButtonsSelected(Array(numberColors).fill(false));
-  }, [resetGame, numberColors]);
+    if (isPlayAgain) {
+      setAreButtonsSelected(Array(numberColors).fill(false));
+    }
+  }, [isPlayAgain, numberColors]);
 
   const handleColorSelection = (index) => {
     const newButtonStates = Array(numberColors).fill(false);
     newButtonStates[index] = true;
     setAreButtonsSelected(newButtonStates);
-    onColorSelect(colors[index]);
-  }
+    setCurrentColor(colors[index]);
+  };
 
   return (
     <div className="box" id="six-colors">

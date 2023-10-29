@@ -18,7 +18,8 @@ function OutputHowGoodWasYourProposal({
     <div>
       <p>
         <b>{parsedNumberInRightPlace}</b> {numberInRightPlaceText}{" "}
-        {verbInRightPlace} <b>richtig</b> platziert und<br />
+        {verbInRightPlace} <b>richtig</b> platziert und
+        <br />
         <b>{parsedNumberInWrongPlace}</b> {numberInWrongPlaceText}{" "}
         {verbInWrongPlace} an der <b>falschen</b> Stelle
       </p>

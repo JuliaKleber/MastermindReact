@@ -7,24 +7,25 @@ function CheckProposedSolutionButton({
   chosenColors,
   numberInputFields,
   currentTrial,
+  setCurrentTrial,
   numberTrials,
   resetGame,
   onNumberInRightPlace,
   onNumberInWrongPlace,
   onProposalSent,
-  onEndOfGame,
-  onIncremented,
+  setEndOfGame,
+  setIsPlayAgain,
 }) {
   const [proposalSent, setProposalSent] = useState(false);
 
-  function handleProposalCheck(event) {
+  const handleProposalCheck = (event) => {
     // Die Arrays werden auf die Farben reduziert,
     // die nicht sowohl übereinstimmen, als auch sich an der gleichen Stelle
     // in der Lösung und in dem Lösungsvorschlag vom Nutzer befinden.
-    let reducedSolution = solution.filter(
+    const reducedSolution = solution.filter(
       (color, i) => color !== chosenColors[i]
     );
-    let proposal = chosenColors.filter((color, i) => color !== solution[i]);
+    const proposal = chosenColors.filter((color, i) => color !== solution[i]);
     const numberInRightPlace = solution.length - reducedSolution.length;
     // Prüft in der for-Schleife wie viele Farben zwar in beiden Lösungen vorkommen,
     // aber sich an unterschiedlichen Stellen befinden.
@@ -46,9 +47,9 @@ function CheckProposedSolutionButton({
     // Entweder wird das Ende des Spiels ausgelöst
     // oder CurrentTrial wird um eins erhöht.
     numberInRightPlace === numberInputFields || currentTrial === numberTrials
-      ? onEndOfGame(true)
-      : onIncremented(currentTrial + 1);
-  }
+      ? setEndOfGame(true) && setIsPlayAgain(false)
+      : setCurrentTrial(currentTrial + 1);
+  };
 
   // Setzt das Spiel zurück.
   useEffect(() => {

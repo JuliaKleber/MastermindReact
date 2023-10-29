@@ -10,16 +10,15 @@ import Output from "./Output";
 import QuestionPlayAgain from "./QuestionPlayAgain";
 
 function Trial({
+  numberTrials,
   numberTrial,
   currentTrial,
-  chosenColor,
+  setCurrentTrial,
+  currentColor,
   solution,
-  numberTrials,
   numberInputFields,
-  resetGame,
-  onResetGame,
-  onPlayAgain,
-  onIncremented,
+  isPlayAgain,
+  setIsPlayAgain,
 }) {
   const [chosenColors, setChosenColors] = useState(
     Array(numberInputFields).fill("white")
@@ -28,33 +27,18 @@ function Trial({
   const [numberInRightPlace, setNumberInRightPlace] = useState(0);
   const [numberInWrongPlace, setNumberInWrongPlace] = useState(0);
   const [endOfGame, setEndOfGame] = useState(false);
-  const [playAgain, setPlayAgain] = useState(false);
-  const [isShown, setIsShown] = useState(false);
 
   // Wenn sich der aktuelle Versuch ändert,
   // werden alle Versuche bis zum aktuellen Versuch angezeigt.
-  useEffect(() => {
-    numberTrial <= currentTrial ? setIsShown(true) : setIsShown(false);
-  }, [currentTrial, numberTrial]);
+  const isShown = numberTrial <= currentTrial;
 
   // Setzt das Spiel zurück.
   useEffect(() => {
-    if (resetGame) {
+    if (isPlayAgain) {
       setChosenColors(Array(numberInputFields).fill("white"));
       setProposalSent(false);
-      onResetGame(false);
     }
-  }, [resetGame, numberInputFields, onResetGame]);
-
-  // Wenn der Nutzer noch mal spielen will,
-  // wird die Info an App.js weitergegeben.
-  useEffect(() => {
-    if (playAgain) {
-      setEndOfGame(false);
-      setPlayAgain(false);
-      onPlayAgain(true);
-    }
-  }, [playAgain, onPlayAgain]);
+  }, [isPlayAgain, setIsPlayAgain, numberInputFields]);
 
   return (
     <div className={isShown ? "trial-visible" : "trial-not-visible"}>
@@ -62,23 +46,24 @@ function Trial({
       <InputFields
         currentTrial={currentTrial}
         numberTrial={numberTrial}
-        chosenColor={chosenColor}
+        chosenColor={currentColor}
         numberInputFields={numberInputFields}
         onChosenColors={(newChosenColors) => setChosenColors(newChosenColors)}
-        resetGame={resetGame}
+        isPlayAgain={isPlayAgain}
       />
       <CheckProposedSolutionButton
         solution={solution}
         chosenColors={chosenColors}
         numberInputFields={numberInputFields}
         currentTrial={currentTrial}
+        setCurrentTrial={setCurrentTrial}
         numberTrials={numberTrials}
-        resetGame={resetGame}
+        isPlayAgain={isPlayAgain}
         onNumberInRightPlace={(state) => setNumberInRightPlace(state)}
         onNumberInWrongPlace={(state) => setNumberInWrongPlace(state)}
         onProposalSent={(state) => setProposalSent(state)}
-        onEndOfGame={(state) => setEndOfGame(state)}
-        onIncremented={(state) => onIncremented(state)}
+        setEndOfGame={setEndOfGame}
+        setIsPlayAgain={setIsPlayAgain}
       />
       {proposalSent && (
         <Output
@@ -93,9 +78,7 @@ function Trial({
           proposalSent={proposalSent}
         />
       )}
-      {endOfGame && (
-        <QuestionPlayAgain onPlayAgain={() => setPlayAgain(true)} />
-      )}
+      {endOfGame && <QuestionPlayAgain setIsPlayAgain={setIsPlayAgain} />}
     </div>
   );
 }

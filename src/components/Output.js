@@ -65,7 +65,7 @@ function Output({
 
   // Wandelt die englischen Bezeichnungen
   // der Farben in deutsche Bezeichnungen um.
-  function toGermanColors(colors) {
+  const toGermanColors = (colors) => {
     const colorMap = {
       yellow: "gelb",
       orange: "orange",
@@ -75,7 +75,7 @@ function Output({
       limegreen: "grün",
     };
     return colors.map((color) => colorMap[color] || "andere Farbe").join(", ");
-  }
+  };
 
   return <div>{output}</div>;
 }

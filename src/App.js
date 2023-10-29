@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import SixColors from "./components/SixColors";
 import Trial from "./components/Trial";
 import Instruction from "./components/Instruction";
@@ -21,61 +21,59 @@ const numberInputFields = 4;
 
 // Per Zufall werden die Farben gesetzt,
 // die vom Benutzer zu erraten sind.
-function setColorsSolution() {
+const setColorsSolution = () => {
   let newSolution = [];
   for (let i = 0; i < numberInputFields; i++) {
     let dice = Math.floor(Math.random() * numberColors);
     newSolution.push(colors[dice]);
   }
   return newSolution;
-}
+};
 
 function App() {
-  const [chosenColor, setChosenColor] = useState("white");
+  const [currentColor, setCurrentColor] = useState("white");
   const [currentTrial, setCurrentTrial] = useState(1);
-  const [playAgain, setPlayAgain] = useState(false);
-  const [resetGame, setResetGame] = useState(false);
+  const [isPlayAgain, setIsPlayAgain] = useState(false);
   const [solution, setSolution] = useState(() => setColorsSolution());
-
-  // Hier wird die Farbe gespeichert,
-  // die der Spieler mittels der Komponente sixColors auswählt
-  const handleColorSelection = useCallback((color) => {
-    setChosenColor(color);
-  }, []);
-
-  // In currentTrial wird gespeichert in welchem Versuch sich der Spieler befindet
-  const incrementCurrentTrial = useCallback((current) => {
-    setCurrentTrial(current);
-  }, []);
-
-  // Falls der Spieler noch mal spielen will, wird das Spiel zurückgesetzt.
-  const handlePlayAgain = useCallback((newGame) => {
-    setPlayAgain(newGame);
-  }, []);
-
-  // Falls der Spieler noch mal spielen will, wird das Spiel zurückgesetzt.
-  const handleResetGame = useCallback((newResetGame) => {
-    setResetGame(newResetGame);
-  }, []);
 
   // Falls der Spieler noch mal spielen will, wird das Spiel zurückgesetzt.
   useEffect(() => {
-    if (playAgain === true) {
-      setResetGame(true);
+    if (isPlayAgain === true) {
+      // setResetGame(true);
       setSolution(setColorsSolution());
       setCurrentTrial(1);
-      setPlayAgain(false);
+      // setIsPlayAgain(false);
     }
-  }, [playAgain]);
+  }, [isPlayAgain]);
+
+  // // Falls der Spieler noch mal spielen will, wird das Spiel zurückgesetzt.
+  // const handleIsPlayAgain = useCallback((newGame) => {
+  //   setIsPlayAgain(newGame);
+  // }, []);
+
+  // // Falls der Spieler noch mal spielen will, wird das Spiel zurückgesetzt.
+  // const handleResetGame = useCallback((newResetGame) => {
+  //   setResetGame(newResetGame);
+  // }, []);
+
+  // Falls der Spieler noch mal spielen will, wird das Spiel zurückgesetzt.
+  // useEffect(() => {
+  //   if (isPlayAgain === true) {
+  //     // setResetGame(true);
+  //     setSolution(setColorsSolution());
+  //     setCurrentTrial(1);
+  //     setIsPlayAgain(false);
+  //   }
+  // }, [isPlayAgain]);
 
   return (
     <>
       <main>
         <SixColors
           colors={colors}
-          onColorSelect={handleColorSelection}
           numberColors={numberColors}
-          resetGame={resetGame}
+          setCurrentColor={setCurrentColor}
+          isPlayAgain={isPlayAgain}
         />
         <div id="trials">
           {Array(numberTrials)
@@ -83,16 +81,15 @@ function App() {
             .map((_, index) => (
               <Trial
                 key={`trial${index + 1}`}
+                numberTrials={numberTrials}
                 numberTrial={index + 1}
                 currentTrial={currentTrial}
+                setCurrentTrial={setCurrentTrial}
                 solution={solution}
-                chosenColor={chosenColor}
-                numberTrials={numberTrials}
+                currentColor={currentColor}
                 numberInputFields={numberInputFields}
-                onIncremented={incrementCurrentTrial}
-                onPlayAgain={handlePlayAgain}
-                onResetGame={handleResetGame}
-                resetGame={resetGame}
+                isPlayAgain={isPlayAgain}
+                setIsPlayAgain={setIsPlayAgain}
               />
             ))}
         </div>

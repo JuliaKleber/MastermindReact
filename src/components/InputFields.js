@@ -15,14 +15,14 @@ function InputFields({
   // Wenn eine Kachel des Versuchs angeklickt wird,
   // wird die chosenColor im Array chosenColors
   // unter dem entsprechendem Index gespeichert.
-  function setColor(index) {
+  const setColor = (index) => {
     if (currentTrial === numberTrial) {
       const newChosenColors = [...chosenColors];
       newChosenColors[index] = chosenColor;
       setChosenColors(newChosenColors);
       onChosenColors(newChosenColors);
     }
-  }
+  };
 
   // Setzt das Spiel zurück.
   useEffect(() => {
