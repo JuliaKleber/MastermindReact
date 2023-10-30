@@ -3,16 +3,16 @@
 
 import React, { useState, useEffect } from "react";
 
-function SixColors({ colors, numberColors, isPlayAgain, setCurrentColor }) {
+function SixColors({ colors, numberColors, setCurrentColor, isResetGame }) {
   const [areButtonsSelected, setAreButtonsSelected] = useState(
     Array(numberColors).fill(false)
   );
 
   useEffect(() => {
-    if (isPlayAgain) {
+    if (isResetGame) {
       setAreButtonsSelected(Array(numberColors).fill(false));
     }
-  }, [isPlayAgain, numberColors]);
+  }, [isResetGame]);
 
   const handleColorSelection = (index) => {
     const newButtonStates = Array(numberColors).fill(false);

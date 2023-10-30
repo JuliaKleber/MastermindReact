@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import SixColors from "./components/SixColors";
 import Trial from "./components/Trial";
 import Instruction from "./components/Instruction";
@@ -33,38 +33,15 @@ const setColorsSolution = () => {
 function App() {
   const [currentColor, setCurrentColor] = useState("white");
   const [currentTrial, setCurrentTrial] = useState(1);
-  const [isPlayAgain, setIsPlayAgain] = useState(false);
+  const [isResetGame, setIsResetGame] = useState(false);
   const [solution, setSolution] = useState(() => setColorsSolution());
 
   // Falls der Spieler noch mal spielen will, wird das Spiel zurückgesetzt.
-  useEffect(() => {
-    if (isPlayAgain === true) {
-      // setResetGame(true);
-      setSolution(setColorsSolution());
-      setCurrentTrial(1);
-      // setIsPlayAgain(false);
-    }
-  }, [isPlayAgain]);
-
-  // // Falls der Spieler noch mal spielen will, wird das Spiel zurückgesetzt.
-  // const handleIsPlayAgain = useCallback((newGame) => {
-  //   setIsPlayAgain(newGame);
-  // }, []);
-
-  // // Falls der Spieler noch mal spielen will, wird das Spiel zurückgesetzt.
-  // const handleResetGame = useCallback((newResetGame) => {
-  //   setResetGame(newResetGame);
-  // }, []);
-
-  // Falls der Spieler noch mal spielen will, wird das Spiel zurückgesetzt.
-  // useEffect(() => {
-  //   if (isPlayAgain === true) {
-  //     // setResetGame(true);
-  //     setSolution(setColorsSolution());
-  //     setCurrentTrial(1);
-  //     setIsPlayAgain(false);
-  //   }
-  // }, [isPlayAgain]);
+  const handleResetGame = () => {
+    setSolution(setColorsSolution());
+    setCurrentTrial(1);
+    setIsResetGame(true);
+  };
 
   return (
     <>
@@ -73,7 +50,7 @@ function App() {
           colors={colors}
           numberColors={numberColors}
           setCurrentColor={setCurrentColor}
-          isPlayAgain={isPlayAgain}
+          isResetGame={isResetGame}
         />
         <div id="trials">
           {Array(numberTrials)
@@ -88,8 +65,9 @@ function App() {
                 solution={solution}
                 currentColor={currentColor}
                 numberInputFields={numberInputFields}
-                isPlayAgain={isPlayAgain}
-                setIsPlayAgain={setIsPlayAgain}
+                onResetGameAppComponent={handleResetGame}
+                isResetGame={isResetGame}
+                setIsResetGame={setIsResetGame}
               />
             ))}
         </div>

@@ -1,6 +1,6 @@
 // Durch Klicken des "absenden"-Buttons wird der Lösungsversuch überprüft.
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 function CheckProposedSolutionButton({
   solution,
@@ -9,16 +9,14 @@ function CheckProposedSolutionButton({
   currentTrial,
   setCurrentTrial,
   numberTrials,
-  resetGame,
-  onNumberInRightPlace,
-  onNumberInWrongPlace,
-  onProposalSent,
+  setNumberInRightPlace,
+  setNumberInWrongPlace,
+  proposalSent,
+  setProposalSent,
   setEndOfGame,
-  setIsPlayAgain,
+  isResetGame,
 }) {
-  const [proposalSent, setProposalSent] = useState(false);
-
-  const handleProposalCheck = (event) => {
+  const handleProposalCheck = () => {
     // Die Arrays werden auf die Farben reduziert,
     // die nicht sowohl übereinstimmen, als auch sich an der gleichen Stelle
     // in der Lösung und in dem Lösungsvorschlag vom Nutzer befinden.
@@ -39,24 +37,16 @@ function CheckProposedSolutionButton({
         }
       }
     }
-    onNumberInRightPlace(numberInRightPlace);
-    onNumberInWrongPlace(numberInWrongPlace);
+    setNumberInRightPlace(numberInRightPlace);
+    setNumberInWrongPlace(numberInWrongPlace);
     // Wird benötigt um den send-button auszublenden.
     setProposalSent(true);
-    onProposalSent(true);
     // Entweder wird das Ende des Spiels ausgelöst
     // oder CurrentTrial wird um eins erhöht.
     numberInRightPlace === numberInputFields || currentTrial === numberTrials
-      ? setEndOfGame(true) && setIsPlayAgain(false)
+      ? setEndOfGame(true) && isResetGame(false)
       : setCurrentTrial(currentTrial + 1);
   };
-
-  // Setzt das Spiel zurück.
-  useEffect(() => {
-    if (resetGame === true) {
-      setProposalSent(false);
-    }
-  }, [resetGame]);
 
   return (
     <div>
