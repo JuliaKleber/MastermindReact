@@ -38,7 +38,9 @@ function Trial({
       setChosenColors(Array(numberInputFields).fill("white"));
       setProposalSent(false);
       setEndOfGame(false);
-      if (numberTrial === numberTrials) {setIsResetGame(false)}
+      if (numberTrial === numberTrials) {
+        setIsResetGame(false);
+      }
     }
   }, [isResetGame]);
 
@@ -64,19 +66,15 @@ function Trial({
         proposalSent={proposalSent}
         setProposalSent={setProposalSent}
         setEndOfGame={setEndOfGame}
-        isResetGame={isResetGame}
       />
       {proposalSent && (
         <Output
           numberInRightPlace={numberInRightPlace}
           numberInWrongPlace={numberInWrongPlace}
           numberInputFields={numberInputFields}
-          currentTrial={currentTrial}
           numberTrial={numberTrial}
-          chosenColors={chosenColors}
           numberTrials={numberTrials}
           solution={solution}
-          proposalSent={proposalSent}
         />
       )}
       {endOfGame && (

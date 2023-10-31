@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from "react";
+// Nachdem der Nutzer den absenden-Button geklickt hat,
+// wird der Output generiert der besagt wie gut der Lösungsversuch war.
+
+import React from "react";
 import OutputHowGoodWasYourProposal from "./OutputHowGoodWasYourProposal";
 import OutputSolutionFound from "./OutputSolutionFound";
 import OutputOutOfTurns from "./OutputOutOfTurns";
@@ -7,50 +10,25 @@ function Output({
   numberInRightPlace,
   numberInWrongPlace,
   numberInputFields,
-  currentTrial,
   numberTrial,
-  chosenColors,
   numberTrials,
   solution,
-  proposalSent,
 }) {
-  const [output, setOutput] = useState("");
 
-  useEffect(() => {
-    const newOutput = generateOutput();
-    setOutput(newOutput);
-  }, [proposalSent]);
-
-  const generateOutput = () => {
+  const output = () => {
     // Falls alle vier Farben richtig sind, wird eine entsprechende
     // Meldung ausgegeben und das Ende des Spiels ausgelöst.
-    let newOutput = "";
     if (numberInRightPlace === numberInputFields) {
-      return (
-        <OutputSolutionFound
-          currentTrial={currentTrial}
-          chosenColors={chosenColors}
-        />
-      );
-    }
-    // Ansonsten wird die Anzahl der richtig platzierten Farben
-    // und der falsch platzierten Farben ausgegeben.
-    else {
-      newOutput = (
-        <OutputHowGoodWasYourProposal
-          numberInRightPlace={numberInRightPlace}
-          numberInWrongPlace={numberInWrongPlace}
-        />
-      );
+      return <OutputSolutionFound />;
     }
     // Falls es sich um den 8. Versuch handelt,
     // wird das Ende des Spiels ausgelöst.
-    if (
+    else if (
       numberTrial === numberTrials &&
       numberInRightPlace !== numberInputFields
     ) {
       const solutionGerman = toGermanColors(solution);
-      newOutput = (
+      return (
         <div>
           <OutputHowGoodWasYourProposal
             numberInRightPlace={numberInRightPlace}
@@ -60,7 +38,16 @@ function Output({
         </div>
       );
     }
-    return newOutput;
+    // Ansonsten wird die Anzahl der richtig platzierten Farben
+    // und der falsch platzierten Farben ausgegeben.
+    else {
+      return (
+        <OutputHowGoodWasYourProposal
+          numberInRightPlace={numberInRightPlace}
+          numberInWrongPlace={numberInWrongPlace}
+        />
+      );
+    }
   };
 
   // Wandelt die englischen Bezeichnungen
@@ -77,7 +64,7 @@ function Output({
     return colors.map((color) => colorMap[color] || "andere Farbe").join(", ");
   };
 
-  return <div>{output}</div>;
+  return output()
 }
 
 export default Output;
