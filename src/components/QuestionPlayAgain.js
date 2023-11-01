@@ -1,6 +1,6 @@
 import React from "react";
 
-function QuestionPlayAgain({ onResetGameAppComponent }) {
+const QuestionPlayAgain = ({ onResetGameAppComponent }) => {
   const handleResetGame = () => {
     onResetGameAppComponent();
   };

@@ -1,12 +1,12 @@
 import React from "react";
 
-function InputFields({
+const InputFields = ({
   currentTrial,
   numberTrial,
   currentColor,
   chosenColors,
   setChosenColors,
-}) {
+}) => {
   // Wenn eine Kachel des Versuchs angeklickt wird,
   // wird die chosenColor im Array chosenColors
   // unter dem entsprechendem Index gespeichert.

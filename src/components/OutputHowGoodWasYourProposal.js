@@ -1,9 +1,9 @@
 import React from "react";
 
-function OutputHowGoodWasYourProposal({
+const OutputHowGoodWasYourProposal = ({
   numberInRightPlace,
   numberInWrongPlace,
-}) {
+}) => {
 
   const colorInRightPlace = numberInRightPlace === 1 ? "Farbe" : "Farben";
   const colorInWrongPlace = numberInWrongPlace === 1 ? "Farbe" : "Farben";

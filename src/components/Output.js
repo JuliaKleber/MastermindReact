@@ -6,14 +6,14 @@ import OutputHowGoodWasYourProposal from "./OutputHowGoodWasYourProposal";
 import OutputSolutionFound from "./OutputSolutionFound";
 import OutputOutOfTurns from "./OutputOutOfTurns";
 
-function Output({
+const Output = ({
   numberInRightPlace,
   numberInWrongPlace,
   numberInputFields,
   numberTrial,
   numberTrials,
   solution,
-}) {
+}) => {
 
   const output = () => {
     // Falls alle vier Farben richtig sind, wird eine entsprechende

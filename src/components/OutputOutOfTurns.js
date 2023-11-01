@@ -1,6 +1,6 @@
 import React from "react";
 
-function OutputOutOfTurns({ colorsSolution }) {
+const OutputOutOfTurns = ({ colorsSolution }) => {
   return (
     <div>
       <p>

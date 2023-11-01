@@ -9,7 +9,7 @@ import CheckProposedSolutionButton from "./CheckProposedSolutionButton";
 import Output from "./Output";
 import QuestionPlayAgain from "./QuestionPlayAgain";
 
-function Trial({
+const Trial = ({
   numberTrials,
   numberTrial,
   currentTrial,
@@ -20,7 +20,7 @@ function Trial({
   onResetGameAppComponent,
   isResetGame,
   setIsResetGame,
-}) {
+}) => {
   const [chosenColors, setChosenColors] = useState(
     Array(numberInputFields).fill("white")
   );

@@ -1,6 +1,6 @@
 import React from "react";
 
-function OutputSolutionFound() {
+const OutputSolutionFound = () => {
   return (
     <p className="centered-text">
       <b>Herzlichen Glückwunsch!</b> <br /> Du hast die richtige Lösung

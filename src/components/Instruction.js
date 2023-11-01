@@ -2,7 +2,7 @@
 
 import React from "react";
 
-function Instruction(props) {
+const Instruction = (props) => {
   return (
     <div className="box" id="instruction">
       <h3>Spielanleitung für Mastermind</h3>

@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect } from "react";
 
-function SixColors({ colors, numberColors, setCurrentColor, isResetGame }) {
+const SixColors = ({ colors, numberColors, setCurrentColor, isResetGame }) => {
   const [areButtonsSelected, setAreButtonsSelected] = useState(
     Array(numberColors).fill(false)
   );

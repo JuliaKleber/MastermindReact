@@ -2,7 +2,7 @@
 
 import React from "react";
 
-function CheckProposedSolutionButton({
+const CheckProposedSolutionButton = ({
   solution,
   chosenColors,
   numberInputFields,
@@ -14,7 +14,7 @@ function CheckProposedSolutionButton({
   proposalSent,
   setProposalSent,
   setEndOfGame,
-}) {
+}) => {
   const handleProposalCheck = () => {
     // Wenn zwei Farben sowohl in der Lösung als auch in dem Lösungsvorschlag
     // an der gleichen Stelle vorkommen, werden Sie aus den beiden Arrays entfernt.
@@ -50,13 +50,13 @@ function CheckProposedSolutionButton({
   };
 
   return (
-    <div>
+    <View>
       {!proposalSent && (
         <button className="send-button" onClick={handleProposalCheck}>
           absenden
         </button>
       )}
-    </div>
+    </View>
   );
 }
 
