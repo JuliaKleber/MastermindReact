@@ -6,13 +6,6 @@ This is a simple implementation of the classic board game Mastermind, built with
 
 The game randomly selects a sequence of 4 colors from a pool of 6 possible colors: yellow, orange, red, mediumorchid, royalblue, and limegreen. The player has 8 attempts to guess the sequence. Each guess is evaluated and the player is given feedback to help adjust their next guess.
 
-## Features
-
-The game allows the user to guess a sequence of colors.
-The number of allowed colors is defined by the numberColors constant.
-The number of trials a user gets to guess the correct sequence is defined by the numberTrials constant.
-The number of colors in the sequence to be guessed is defined by the numberInputFields constant.
-
 ## Built with
 
 - React.js
