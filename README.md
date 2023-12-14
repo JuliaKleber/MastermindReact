@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+# Mastermind Game
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a simple implementation of the classic board game Mastermind, built with React. The game generates a sequence of colors that the player must guess within a certain number of attempts.
 
-## Available Scripts
+## Usage
 
-In the project directory, you can run:
+The game starts with a random sequence of colors that the user has to guess. The user can select colors and submit their guess. If the guess is incorrect, the user can try again until they run out of trials.
 
-### `npm start`
+## Game Rules
+The game randomly selects a sequence of 4 colors from a pool of 6 possible colors: yellow, orange, red, mediumorchid, royalblue, and limegreen. The player has 8 attempts to guess the sequence. Each guess is evaluated and the player is given feedback to help adjust their next guess.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The game allows the user to guess a sequence of colors.
+The number of allowed colors is defined by the numberColors constant.
+The number of trials a user gets to guess the correct sequence is defined by the numberTrials constant.
+The number of colors in the sequence to be guessed is defined by the numberInputFields constant.
 
-### `npm test`
+## Built with
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- React.js
+- scss
+  
+## Getting Started
 
-### `npm run build`
+To get a local copy up and running, follow these steps:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+You need to have Node.js and npm installed on your machine. If you don't have them, you can download and install from here: [Node.js](https://nodejs.org/)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Installation
 
-### `npm run eject`
+To install the project, follow these steps:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. Clone the repository:
+``bash
+git clone https://github.com/GoldieCrystal/mastermind.git
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. Navigate into the project directory:
+   ``bash
+   cd mastermind
+   
+3. Install the dependencies:
+   ``bash
+   npm install
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+5. Run the project:
+   ``bash
+   npm start
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The game should now be running on http://localhost:3000
 
-## Learn More
+## Components
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The game consists of several React components, for example:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+ColorPicker: Allows the player to select a color.
+GuessTrial: Represents a single guess attempt.
+Instruction: Displays the game rules and instructions.
 
-### Code Splitting
+## Screenshot
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Author
 
-### Analyzing the Bundle Size
+Julia Kleber (github.com/GoldieCrystal)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
