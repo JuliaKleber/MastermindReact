@@ -24,8 +24,8 @@ You need to have Node.js and npm installed on your machine. If you don't have th
 To install the project, follow these steps:
 
 1. Clone the repository:
-```bash
-git clone https://github.com/GoldieCrystal/mastermind.git
+   ```bash
+   git clone https://github.com/GoldieCrystal/mastermind.git
 
 2. Navigate into the project directory:
    ```bash
