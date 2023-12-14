@@ -24,19 +24,19 @@ You need to have Node.js and npm installed on your machine. If you don't have th
 To install the project, follow these steps:
 
 1. Clone the repository:
-''bash
+```bash
 git clone https://github.com/GoldieCrystal/mastermind.git
 
 2. Navigate into the project directory:
-   ''bash
+   ```bash
    cd mastermind
    
 3. Install the dependencies:
-   ''bash
+   ```bash
    npm install
 
 5. Run the project:
-   ''bash
+   ```bash
    npm start
 
 The game should now be running on http://localhost:3000
@@ -50,6 +50,8 @@ GuessTrial: Represents a single guess attempt.
 Instruction: Displays the game rules and instructions.
 
 ## Screenshot
+
+![image](https://github.com/GoldieCrystal/Mastermind/assets/142741980/fd74a6a7-6c3d-495e-b296-012d629f0fc7)
 
 ## Author
 
