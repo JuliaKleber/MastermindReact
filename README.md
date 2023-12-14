@@ -61,5 +61,6 @@ Instruction: Displays the game rules and instructions.
 
 ## Author
 
-Julia Kleber (github.com/GoldieCrystal)
+[Julia Kleber](https://github.com/GoldieCrystal)
+
 
