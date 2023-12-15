@@ -1,5 +1,5 @@
 @import "./stylesheets/SixColors.css";
-@import "./stylesheets/Trial.css";
+@import "./stylesheets/GuessTrial.css";
 @import "./stylesheets/InputFields.css";
 @import "./stylesheets/ButtonCheckProposal.css";
 @import "./stylesheets/Instruction.css";
@@ -46,14 +46,14 @@ b {
   align-items: center;
 }
 
-.box {
+.card {
   padding: 0px 10px;
   margin-top: 20px;
   margin-bottom: 20px;
   width: 300px;
   text-align: justify;
   border-radius: 10px;
-  box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 #trials {

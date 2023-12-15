@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import SixColors from "./components/SixColors";
-import Trial from "./components/Trial";
+import ColorPicker from "./components/ColorPicker";
+import GuessTrial from "./components/GuessTrial";
 import Instruction from "./components/Instruction";
 
 // Die vom Spiel erlaubten Farben
@@ -12,8 +12,9 @@ const colors = [
   "royalblue",
   "limegreen",
 ];
+
 // Die Anzahl der erlaubten Farben
-const numberColors = colors.length;
+const countColors = colors.length;
 // Die Anzahl der erlaubten Versuche
 const numberTrials = 8;
 // Die Anzahl der zu erratenden Farben
@@ -24,17 +25,18 @@ const numberInputFields = 4;
 const setColorsSolution = () => {
   let newSolution = [];
   for (let i = 0; i < numberInputFields; i++) {
-    let dice = Math.floor(Math.random() * numberColors);
+    let dice = Math.floor(Math.random() * countColors);
     newSolution.push(colors[dice]);
   }
   return newSolution;
 };
 
-function App() {
+const App = () => {
   const [currentColor, setCurrentColor] = useState("white");
   const [currentTrial, setCurrentTrial] = useState(1);
-  const [isResetGame, setIsResetGame] = useState(false);
   const [solution, setSolution] = useState(() => setColorsSolution());
+  const [endOfGame, setEndOfGame] = useState(false);
+  const [isResetGame, setIsResetGame] = useState(false);
 
   // Falls der Spieler noch mal spielen will, wird das Spiel zurückgesetzt.
   const handleResetGame = () => {
@@ -46,17 +48,16 @@ function App() {
   return (
     <>
       <main>
-        <SixColors
+        <ColorPicker
           colors={colors}
-          numberColors={numberColors}
+          numberColors={countColors}
           setCurrentColor={setCurrentColor}
-          isResetGame={isResetGame}
         />
         <div id="trials">
           {Array(numberTrials)
             .fill()
             .map((_, index) => (
-              <Trial
+              <GuessTrial
                 key={`trial${index + 1}`}
                 numberTrials={numberTrials}
                 numberTrial={index + 1}
@@ -65,7 +66,9 @@ function App() {
                 solution={solution}
                 currentColor={currentColor}
                 numberInputFields={numberInputFields}
-                onResetGameAppComponent={handleResetGame}
+                onResetGame={handleResetGame}
+                endOfGame={endOfGame}
+                setEndOfGame={setEndOfGame}
                 isResetGame={isResetGame}
                 setIsResetGame={setIsResetGame}
               />
@@ -74,11 +77,11 @@ function App() {
         <Instruction
           numberTrials={numberTrials}
           numberInputFields={numberInputFields}
-          numberColors={numberColors}
+          numberColors={countColors}
         />
       </main>
     </>
   );
-}
+};
 
 export default App;

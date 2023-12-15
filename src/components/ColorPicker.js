@@ -1,28 +1,32 @@
 // Repräsentiert die Kacheln mit den Farben,
 // die vom Spieler durch Anklicken selektiert werden können
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
-const SixColors = ({ colors, numberColors, setCurrentColor, isResetGame }) => {
+const ColorPicker = ({
+  colors,
+  countColors,
+  setCurrentColor,
+}) => {
   const [areButtonsSelected, setAreButtonsSelected] = useState(
-    Array(numberColors).fill(false)
+    Array(countColors).fill(false)
   );
 
-  useEffect(() => {
-    if (isResetGame) {
-      setAreButtonsSelected(Array(numberColors).fill(false));
-    }
-  }, [isResetGame]);
-
   const handleColorSelection = (index) => {
-    const newButtonStates = Array(numberColors).fill(false);
-    newButtonStates[index] = true;
+    let newButtonStates = [];
+    if (areButtonsSelected[index] === true) {
+      newButtonStates = Array(countColors).fill(false);
+      setCurrentColor("white");
+    } else {
+      newButtonStates = Array(countColors).fill(false);
+      newButtonStates[index] = true;
+      setCurrentColor(colors[index]);
+    }
     setAreButtonsSelected(newButtonStates);
-    setCurrentColor(colors[index]);
   };
 
   return (
-    <div className="box" id="six-colors">
+    <div className="card" id="six-colors">
       {colors.map((color, index) => (
         <button
           key={index}
@@ -35,6 +39,6 @@ const SixColors = ({ colors, numberColors, setCurrentColor, isResetGame }) => {
       ))}
     </div>
   );
-}
+};
 
-export default SixColors;
+export default ColorPicker;
