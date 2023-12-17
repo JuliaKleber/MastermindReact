@@ -25,12 +25,12 @@ To install the project, follow these steps:
 1. Clone the repository:
    
    ```bash
-   git clone https://github.com/GoldieCrystal/mastermind.git
+   git clone https://github.com/JuliaKleber/Mastermind.git
 
 3. Navigate into the project directory:
    
    ```bash
-   cd mastermind
+   cd Mastermind
    
 5. Install the dependencies:
    
