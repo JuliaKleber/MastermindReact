@@ -9,6 +9,8 @@ The game randomly selects a sequence of 4 colors from a pool of 6 possible color
 ## Built with
 
 - React.js
+- HTML
+- CSS
   
 ## Getting Started
 
