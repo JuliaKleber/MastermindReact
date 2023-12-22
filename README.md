@@ -58,7 +58,7 @@ Instruction: Displays the game rules and instructions.
 
 ## Link
 
-https://julias-mastermind-b5ae3e8ca4dc.herokuapp.com/
+[https://julias-mastermind-b5ae3e8ca4dc.herokuapp.com/](https://julias-mastermind-8307dbd90d6c.herokuapp.com/)
 
 Optimized for Firefox
 
