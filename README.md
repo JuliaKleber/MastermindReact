@@ -56,6 +56,12 @@ GuessTrial: Represents a single guess attempt.
 
 Instruction: Displays the game rules and instructions.
 
+## Link
+
+https://julias-mastermind-b5ae3e8ca4dc.herokuapp.com/
+
+Optimized for Firefox
+
 ## Screenshot
 
 ![image](https://github.com/GoldieCrystal/Mastermind/assets/142741980/fd74a6a7-6c3d-495e-b296-012d629f0fc7)
