@@ -12,6 +12,12 @@ The game randomly selects a sequence of 4 colors from a pool of 6 possible color
 - HTML
 - CSS
 
+## Link
+
+https://julias--mastermind.web.app/
+
+Optimized for Firefox
+
 ## Screenshot
 
 ![image](https://github.com/GoldieCrystal/Mastermind/assets/142741980/fd74a6a7-6c3d-495e-b296-012d629f0fc7)
