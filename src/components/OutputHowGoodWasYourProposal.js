@@ -1,22 +1,22 @@
 import React from "react";
 
 const OutputHowGoodWasYourProposal = ({
-  numberInRightPlace,
-  numberInWrongPlace,
+  qualityOfGuesses,
+  numberTrial,
 }) => {
 
-  const colorInRightPlace = numberInRightPlace === 1 ? "Farbe" : "Farben";
-  const colorInWrongPlace = numberInWrongPlace === 1 ? "Farbe" : "Farben";
-  const verbInRightPlace = numberInRightPlace === 1 ? "ist" : "sind";
-  const verbInWrongPlace = numberInWrongPlace === 1 ? "ist" : "sind";
+  const colorInRightPlace = qualityOfGuesses[numberTrial][0] === 1 ? "Farbe" : "Farben";
+  const colorInWrongPlace = qualityOfGuesses[numberTrial][1] === 1 ? "Farbe" : "Farben";
+  const verbInRightPlace = qualityOfGuesses[numberTrial][0] === 1 ? "ist" : "sind";
+  const verbInWrongPlace = qualityOfGuesses[numberTrial][1] === 1 ? "ist" : "sind";
 
   return (
     <div>
       <p>
-        <b>{numberInRightPlace}</b> {colorInRightPlace} {verbInRightPlace}{" "}
+        <b>{qualityOfGuesses[numberTrial][0]}</b> {colorInRightPlace} {verbInRightPlace}{" "}
         <b>richtig</b> platziert und
         <br />
-        <b>{numberInWrongPlace}</b> {colorInWrongPlace} {verbInWrongPlace} an
+        <b>{qualityOfGuesses[numberTrial][1]}</b> {colorInWrongPlace} {verbInWrongPlace} an
         der <b>falschen</b> Stelle
       </p>
     </div>

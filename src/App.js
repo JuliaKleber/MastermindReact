@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ColorPicker from "./components/ColorPicker";
-import GuessTrial from "./components/GuessTrial";
+import CurrentGuessTrial from "./components/CurrentGuessTrial";
+import OldGuessTrial from "./components/OldGuessTrial";
 import Instruction from "./components/Instruction";
 
 // Die vom Spiel erlaubten Farben
@@ -14,7 +15,7 @@ const colors = [
 ];
 
 // Die Anzahl der erlaubten Farben
-const countColors = colors.length;
+const colorsCount = colors.length;
 // Die Anzahl der erlaubten Versuche
 const numberTrials = 8;
 // Die Anzahl der zu erratenden Farben
@@ -25,7 +26,7 @@ const numberInputFields = 4;
 const setColorsSolution = () => {
   let newSolution = [];
   for (let i = 0; i < numberInputFields; i++) {
-    let dice = Math.floor(Math.random() * countColors);
+    let dice = Math.floor(Math.random() * colorsCount);
     newSolution.push(colors[dice]);
   }
   return newSolution;
@@ -33,54 +34,65 @@ const setColorsSolution = () => {
 
 const App = () => {
   const [currentColor, setCurrentColor] = useState("white");
-  const [currentTrial, setCurrentTrial] = useState(1);
+  const [currentTrial, setCurrentTrial] = useState(0);
   const [solution, setSolution] = useState(() => setColorsSolution());
-  const [endOfGame, setEndOfGame] = useState(false);
-  const [isResetGame, setIsResetGame] = useState(false);
+  const [userGuesses, setUserGuesses] = useState(() =>
+    Array.from({ length: numberTrials }, () => Array(numberInputFields).fill("white"))
+  );
+  const [qualityOfGuesses, setQualityOfGuesses] = useState([]);
 
   // Falls der Spieler noch mal spielen will, wird das Spiel zurückgesetzt.
   const handleResetGame = () => {
     setSolution(setColorsSolution());
-    setCurrentTrial(1);
-    setIsResetGame(true);
+    setCurrentTrial(0);
+    setUserGuesses(() => Array.from({ length: numberTrials }, () => Array(numberInputFields).fill("white")));
+    setQualityOfGuesses([]);
   };
 
   return (
-    <>
-      <main>
-        <ColorPicker
-          colors={colors}
-          numberColors={countColors}
-          setCurrentColor={setCurrentColor}
-        />
-        <div id="trials">
-          {Array(numberTrials)
-            .fill()
-            .map((_, index) => (
-              <GuessTrial
-                key={`trial${index + 1}`}
-                numberTrials={numberTrials}
-                numberTrial={index + 1}
-                currentTrial={currentTrial}
-                setCurrentTrial={setCurrentTrial}
-                solution={solution}
-                currentColor={currentColor}
-                numberInputFields={numberInputFields}
-                onResetGame={handleResetGame}
-                endOfGame={endOfGame}
-                setEndOfGame={setEndOfGame}
-                isResetGame={isResetGame}
-                setIsResetGame={setIsResetGame}
-              />
-            ))}
-        </div>
-        <Instruction
-          numberTrials={numberTrials}
-          numberInputFields={numberInputFields}
-          numberColors={countColors}
-        />
-      </main>
-    </>
+    <main>
+      <ColorPicker
+        colors={colors}
+        colorsCount={colorsCount}
+        setCurrentColor={setCurrentColor}
+      />
+      <CurrentGuessTrial
+        colors={colors}
+        currentColor={currentColor}
+        numberTrials={numberTrials}
+        numberTrial={currentTrial}
+        currentTrial={currentTrial}
+        setCurrentTrial={setCurrentTrial}
+        solution={solution}
+        userGuesses={userGuesses}
+        setUserGuesses={setUserGuesses}
+        qualityOfGuesses={qualityOfGuesses}
+        setQualityOfGuesses={setQualityOfGuesses}
+        numberInputFields={numberInputFields}
+        onResetGame={handleResetGame}
+      />
+      <div id="trials">
+        {Array(currentTrial)
+          .fill()
+          .map((_, index) => (
+            <OldGuessTrial
+              key={`trial${index}`}
+              currentColor={currentColor}
+              numberTrials={numberTrials}
+              numberTrial={index}
+              currentTrial={currentTrial}
+              userGuesses={userGuesses}
+              qualityOfGuesses={qualityOfGuesses}
+              numberInputFields={numberInputFields}
+            />
+          ))}
+      </div>
+      <Instruction
+        numberTrials={numberTrials}
+        numberInputFields={numberInputFields}
+        colorsCount={colorsCount}
+      />
+    </main>
   );
 };
 

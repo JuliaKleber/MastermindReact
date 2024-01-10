@@ -1,7 +1,8 @@
 import React from "react";
 
 const OutputOutOfTurns = ({ solution }) => {
-    // Wandelt die englischen Bezeichnungen
+
+  // Wandelt die englischen Bezeichnungen
   // der Farben in deutsche Bezeichnungen um.
   const toGermanColors = (solution) => {
     const colorMap = {

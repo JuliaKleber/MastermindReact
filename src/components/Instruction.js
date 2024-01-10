@@ -1,4 +1,4 @@
-// Eine Anleitung zum Spiel wird angezeigt.
+// An instruction for the game is shown.
 
 import React from "react";
 
@@ -12,7 +12,7 @@ const Instruction = (props) => {
         vorkommen.
       </p>
       <p>
-        Zum Setzen der Farben wähle eines der {props.numberColors} Farbfelder
+        Zum Setzen der Farben wähle eines der {props.countColors} Farbfelder
         an. Dann kannst du die weißen Quadrate der Versuche einfärben, indem du
         sie auswählst.
       </p>
