@@ -4,7 +4,7 @@ import React from "react";
 
 const Instruction = (props) => {
   return (
-    <div className="card" id="instruction">
+    <div className="card big-card container-top-margin" id="instruction">
       <h3>Spielanleitung für Mastermind</h3>
       <p>
         Der Computer wählt zufällig {props.numberInputFields} Farben aus. Ziel

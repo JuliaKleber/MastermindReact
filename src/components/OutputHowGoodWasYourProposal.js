@@ -14,7 +14,7 @@ const OutputHowGoodWasYourProposal = ({
   const output = () => {
     return numberTrial === currentTrial ? (
       <div>
-        <p>
+        <p className="centered-text">
           <b>{qualityOfGuesses[numberTrial][0]}</b> {colorInRightPlace} {verbInRightPlace} <b>richtig</b> platziert und<br />
           <b>{qualityOfGuesses[numberTrial][1]}</b> {colorInWrongPlace} {verbInWrongPlace} an der <b>falschen</b> Stelle
         </p>

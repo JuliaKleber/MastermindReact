@@ -14,7 +14,7 @@ const OldGuessTrial = ({
 }) => {
 
   return (
-    <div className="card small-card">
+    <div className={"card small-card"}>
       <h3>{numberTrial + 1}. Versuch</h3>
       <InputFields
         numberTrial={numberTrial}

@@ -23,7 +23,7 @@ const ColorPicker = ({ colors, colorsCount, setCurrentColor }) => {
   };
 
   return (
-    <div className="card" id="six-colors">
+    <div className="card big-card" id="six-colors">
       {colors.map((fieldColor, index) => (
         <button
           key={index}

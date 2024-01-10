@@ -1,5 +1,6 @@
-@import "./stylesheets/SixColors.css";
+@import "./stylesheets/ColorPicker.css";
 @import "./stylesheets/InputFields.css";
+@import "./stylesheets/containers.css";
 @import "./stylesheets/cards.css";
 
 body {
@@ -9,25 +10,13 @@ body {
   margin-top: 0px;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.main-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 h3 {
   text-align: center;
 }
 
 button {
-  margin-bottom: 10px;
+  margin-top: 8px;
+  margin-bottom: 15px;
   border: 0px;
   border-radius: 30px;
   background-color: #4f30da;
@@ -46,22 +35,10 @@ b {
   color: rgb(105, 1, 105);
 }
 
-#trials {
-  display: flex;
-  flex-direction: row-reverse;
-  flex-wrap: wrap-reverse;
-  justify-content: center;
+.trial-not-visible {
+  display: none;
 }
 
 .centered-text {
   text-align: center;
 }
-
-/* @media only screen and (min-width: 1000px) {
-  .main-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-  }
-} */

@@ -3,11 +3,9 @@
 // By clicking the 'submit' button, the attempted solution is checked
 // and an appropriate message is displayed.
 
-import React, { useState } from "react";
+import React from "react";
 import InputFields from "./InputFields";
 import OutputHowGoodWasYourProposal from "./OutputHowGoodWasYourProposal";
-import OutputSolutionFound from "./OutputSolutionFound";
-import OutputOutOfTurns from "./OutputOutOfTurns";
 
 const CurrentGuessTrial = ({
   numberTrials,
@@ -21,13 +19,13 @@ const CurrentGuessTrial = ({
   qualityOfGuesses,
   setQualityOfGuesses,
   numberInputFields,
-  onResetGame,
+  hasWon,
+  setHasWon,
+  hasLost,
+  setHasLost,
 }) => {
 
   const isLastTrial = currentTrial === numberTrials - 1;
-  const [hasWon, setHasWon] = useState(false);
-  const [hasLost, setHasLost] = useState(false);
-  const [endOfGame, setEndOfGame] = useState(false);
 
   const handleProposalCheck = () => {
     // If two colors occur both in the solution and in the solution proposal
@@ -56,56 +54,13 @@ const CurrentGuessTrial = ({
     // or CurrentTrial is increased by one.
     setHasWon(correctGuesses === numberInputFields);
     setHasLost(correctGuesses !== numberInputFields && isLastTrial);
-    correctGuesses === numberInputFields || isLastTrial
-      ? setEndOfGame(true)
-      : setCurrentTrial(currentTrial => currentTrial + 1);
+    if (correctGuesses !== numberInputFields && !isLastTrial) {
+       setCurrentTrial(currentTrial => currentTrial + 1);
+    }
   };
 
-  const resetGame = () => {
-    setEndOfGame(false);
-    setHasWon(false);
-    setHasLost(false);
-    onResetGame();
-  }
-
-  const output = () => {
-    if (hasLost) {
-      return (
-        <>
-          <OutputHowGoodWasYourProposal
-            numberTrial={numberTrial}
-            currentTrial={currentTrial}
-            qualityOfGuesses={qualityOfGuesses}
-          />
-          <OutputOutOfTurns solution={solution} />
-        </>
-      )
-    }
-    if (hasWon) {
-      return <OutputSolutionFound />
-    }
-    return null;
-  }
-
-  const button = () => {
-    if (!endOfGame) {
-      return (
-        <button className="send-button" onClick={handleProposalCheck}>
-          absenden
-        </button>
-      )
-    } else {
-      return (
-        <div className="container">
-          <p>Möchtest du noch mal spielen?</p>
-          <button onClick={() => resetGame()}>Ja</button>
-        </div>
-      )
-    }
-  }
-
   return (
-    <div className={"card big-card container"}>
+    <div className={"card big-card column-container"}>
       <h3>{numberTrial + 1}. Versuch</h3>
       <InputFields
         currentTrial={currentTrial}
@@ -114,8 +69,16 @@ const CurrentGuessTrial = ({
         userGuesses={userGuesses}
         setUserGuesses={setUserGuesses}
       />
-      {output()}
-      {button()}
+      {(hasLost || hasWon) && <OutputHowGoodWasYourProposal
+        numberTrial={numberTrial}
+        currentTrial={currentTrial}
+        qualityOfGuesses={qualityOfGuesses}
+      />}
+      {!hasWon && !hasLost &&
+        <button className="send-button" onClick={handleProposalCheck}>
+          absenden
+        </button>
+      }
     </div>
   );
 };

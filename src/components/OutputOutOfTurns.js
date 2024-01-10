@@ -18,8 +18,11 @@ const OutputOutOfTurns = ({ solution }) => {
 
   return (
     <div>
-      <p>
-        Die richtige Lösung ist
+      <p className="centered-text">
+        Dieses Mal hast du nicht gewonnen. Gutes Gelingen beim nächsten Mal!
+        <br />
+        <br />
+        Die Lösung ist
         <br />
         <b>{toGermanColors(solution)}</b>
       </p>
