@@ -1,10 +1,18 @@
 .input-field {
-  width: 75px;
-  height: 75px;
   border: 1px solid black;
   border-right-width: 0px;
   border-radius: 0px;
   margin: 5px 0px 10px 0px;
+}
+
+.big-field {
+  width: 75px;
+  height: 75px;
+}
+
+.small-field {
+  width: 30px;
+  height: 30px;
 }
 
 .input-field:hover {

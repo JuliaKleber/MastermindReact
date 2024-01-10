@@ -1,8 +1,6 @@
 @import "./stylesheets/SixColors.css";
-@import "./stylesheets/GuessTrial.css";
 @import "./stylesheets/InputFields.css";
-@import "./stylesheets/ButtonCheckProposal.css";
-@import "./stylesheets/Instruction.css";
+@import "./stylesheets/cards.css";
 
 body {
   font-family: arial;
@@ -11,7 +9,14 @@ body {
   margin-top: 0px;
 }
 
-main {
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,6 +27,7 @@ h3 {
 }
 
 button {
+  margin-bottom: 10px;
   border: 0px;
   border-radius: 30px;
   background-color: #4f30da;
@@ -40,35 +46,22 @@ b {
   color: rgb(105, 1, 105);
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.card {
-  padding: 0px 10px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  width: 300px;
-  text-align: justify;
-  border-radius: 10px;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
-}
-
 #trials {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: row-reverse;
+  flex-wrap: wrap-reverse;
+  justify-content: center;
 }
 
 .centered-text {
   text-align: center;
 }
 
-@media only screen and (min-width: 1000px) {
-  #trials {
-    position: absolute;
-    left: 260px;
-    top: 145px;
+/* @media only screen and (min-width: 1000px) {
+  .main-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
   }
-}
+} */

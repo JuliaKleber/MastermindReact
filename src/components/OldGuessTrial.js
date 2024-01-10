@@ -14,7 +14,7 @@ const OldGuessTrial = ({
 }) => {
 
   return (
-    <div className="trial-visible">
+    <div className="card small-card">
       <h3>{numberTrial + 1}. Versuch</h3>
       <InputFields
         numberTrial={numberTrial}
@@ -24,6 +24,7 @@ const OldGuessTrial = ({
       <OutputHowGoodWasYourProposal
         qualityOfGuesses={qualityOfGuesses}
         numberTrial={numberTrial}
+        currentTrial={currentTrial}
       />
     </div>
   );

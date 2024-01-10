@@ -26,7 +26,7 @@ const InputFields = ({
     <div>
       {userGuesses[numberTrial].map((color, index) => (
         <button
-          className="input-field"
+          className={numberTrial === currentTrial ? "big-field input-field" : "small-field input-field"}
           key={index}
           style={{ backgroundColor: color }}
           onClick={() => setColor(index)}

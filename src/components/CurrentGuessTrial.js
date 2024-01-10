@@ -74,6 +74,7 @@ const CurrentGuessTrial = ({
         <>
           <OutputHowGoodWasYourProposal
             numberTrial={numberTrial}
+            currentTrial={currentTrial}
             qualityOfGuesses={qualityOfGuesses}
           />
           <OutputOutOfTurns solution={solution} />
@@ -104,7 +105,7 @@ const CurrentGuessTrial = ({
   }
 
   return (
-    <div className={"trial-visible"}>
+    <div className={"card big-card container"}>
       <h3>{numberTrial + 1}. Versuch</h3>
       <InputFields
         currentTrial={currentTrial}

@@ -50,7 +50,7 @@ const App = () => {
   };
 
   return (
-    <main>
+    <div className="main-container">
       <ColorPicker
         colors={colors}
         colorsCount={colorsCount}
@@ -92,7 +92,7 @@ const App = () => {
         numberInputFields={numberInputFields}
         colorsCount={colorsCount}
       />
-    </main>
+    </div>
   );
 };
 
