@@ -1,39 +1,36 @@
-// Repräsentiert die Kacheln mit den Farben,
-// die vom Spieler durch Anklicken selektiert werden können
+// Represents the tiles with the colors
+// which can be selected by the player by clicking.
 
 import React, { useState } from "react";
 
-const ColorPicker = ({
-  colors,
-  countColors,
-  setCurrentColor,
-}) => {
-  const [areButtonsSelected, setAreButtonsSelected] = useState(
-    Array(countColors).fill(false)
+const ColorPicker = ({ colors, colorsCount, setCurrentColor }) => {
+
+  const [selectedButtons, setSelectedButtons] = useState(
+    Array(colorsCount).fill(false)
   );
 
   const handleColorSelection = (index) => {
     let newButtonStates = [];
-    if (areButtonsSelected[index] === true) {
-      newButtonStates = Array(countColors).fill(false);
+    if (selectedButtons[index] === true) {
+      newButtonStates = Array(colorsCount).fill(false);
       setCurrentColor("white");
     } else {
-      newButtonStates = Array(countColors).fill(false);
+      newButtonStates = Array(colorsCount).fill(false);
       newButtonStates[index] = true;
       setCurrentColor(colors[index]);
     }
-    setAreButtonsSelected(newButtonStates);
+    setSelectedButtons(newButtonStates);
   };
 
   return (
     <div className="card" id="six-colors">
-      {colors.map((color, index) => (
+      {colors.map((fieldColor, index) => (
         <button
           key={index}
           className={
-            areButtonsSelected[index] ? "color-selected" : "color-not-selected"
+            selectedButtons[index] ? "color-selected" : "color-not-selected"
           }
-          style={{ backgroundColor: color }}
+          style={{ backgroundColor: fieldColor }}
           onClick={() => handleColorSelection(index)}
         ></button>
       ))}
