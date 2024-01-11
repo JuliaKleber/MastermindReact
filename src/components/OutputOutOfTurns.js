@@ -2,8 +2,8 @@ import React from "react";
 
 const OutputOutOfTurns = ({ solution }) => {
 
-  // Wandelt die englischen Bezeichnungen
-  // der Farben in deutsche Bezeichnungen um.
+  // Translates the English names
+  // of the colors into German names.
   const toGermanColors = (solution) => {
     const colorMap = {
       yellow: "gelb",
