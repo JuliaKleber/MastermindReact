@@ -75,7 +75,7 @@ const App = () => {
           setHasWon={setHasWon}
           onResetGame={handleResetGame}
         />
-        {!hasWon && !hasLost && (
+        {(!hasWon || (hasWon && (currentTrial === (numberTrials - 1)))) &&
           <CurrentGuessTrial
             currentColor={currentColor}
             numberTrials={numberTrials}
@@ -93,7 +93,7 @@ const App = () => {
             hasLost={hasLost}
             setHasLost={setHasLost}
           />
-        )}
+        }
       </div>
       <div className="old-trials">
         {Array(currentTrial)
