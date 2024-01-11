@@ -21,7 +21,8 @@ Optimized for Firefox
 
 ## Screenshot
 
-![image](https://github.com/GoldieCrystal/Mastermind/assets/142741980/fd74a6a7-6c3d-495e-b296-012d629f0fc7)
+![image](https://github.com/JuliaKleber/MastermindReact/assets/142741980/46527a62-839c-471f-81b9-ef5d9506c512)
+
 
 ## Getting Started
 
