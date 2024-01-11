@@ -75,25 +75,27 @@ const App = () => {
           setHasWon={setHasWon}
           onResetGame={handleResetGame}
         />
-        <CurrentGuessTrial
-          currentColor={currentColor}
-          numberTrials={numberTrials}
-          numberTrial={currentTrial}
-          currentTrial={currentTrial}
-          setCurrentTrial={setCurrentTrial}
-          solution={solution}
-          userGuesses={userGuesses}
-          setUserGuesses={setUserGuesses}
-          qualityOfGuesses={qualityOfGuesses}
-          setQualityOfGuesses={setQualityOfGuesses}
-          numberInputFields={numberInputFields}
-          hasWon={hasWon}
-          setHasWon={setHasWon}
-          hasLost={hasLost}
-          setHasLost={setHasLost}
-        />
+        {!hasWon && !hasLost && (
+          <CurrentGuessTrial
+            currentColor={currentColor}
+            numberTrials={numberTrials}
+            numberTrial={currentTrial}
+            currentTrial={currentTrial}
+            setCurrentTrial={setCurrentTrial}
+            solution={solution}
+            userGuesses={userGuesses}
+            setUserGuesses={setUserGuesses}
+            qualityOfGuesses={qualityOfGuesses}
+            setQualityOfGuesses={setQualityOfGuesses}
+            numberInputFields={numberInputFields}
+            hasWon={hasWon}
+            setHasWon={setHasWon}
+            hasLost={hasLost}
+            setHasLost={setHasLost}
+          />
+        )}
       </div>
-      <div className="old-trials container-top-margin">
+      <div className="old-trials">
         {Array(currentTrial)
           .fill()
           .map((_, index) => (
