@@ -63,7 +63,8 @@ The game should now be running on http://localhost:3000
 The game consists of several React components, for example:
 
 - ColorPicker: Allows the player to select a color.
-- GuessTrial: Represents a single guess attempt.
+- CurrentGuessTrial: Represents the current guess that has not yet been submitted by the user.
+- OldGuessTrial: Represents a single guess attempt that has already been submitted by the user.
 - Instruction: Displays the game rules and instructions.
 
 ## Author
