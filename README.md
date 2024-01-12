@@ -1,6 +1,6 @@
 # Mastermind Game
 
-This is a simple implementation of the classic board game Mastermind, built with React Native.
+This is a simple implementation of the classic board game Mastermind, built with React.
 The game generates a sequence of colors that the player must guess within a certain number of attempts.
 
 ## Game Rules
