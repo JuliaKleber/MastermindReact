@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/MastermindReact/static/css/main.8f42ac03.css",
+    "main.js": "/MastermindReact/static/js/main.ef6d4f73.js",
+    "index.html": "/MastermindReact/index.html",
+    "main.8f42ac03.css.map": "/MastermindReact/static/css/main.8f42ac03.css.map",
+    "main.ef6d4f73.js.map": "/MastermindReact/static/js/main.ef6d4f73.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8f42ac03.css",
+    "static/js/main.ef6d4f73.js"
+  ]
+}
