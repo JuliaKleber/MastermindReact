@@ -1,0 +1,44 @@
+@import "./stylesheets/ColorPicker.css";
+@import "./stylesheets/InputFields.css";
+@import "./stylesheets/containers.css";
+@import "./stylesheets/cards.css";
+
+body {
+  font-family: arial;
+  font-size: 18px;
+  background-color: white;
+  margin-top: 0px;
+}
+
+h3 {
+  text-align: center;
+}
+
+button {
+  margin-top: 8px;
+  margin-bottom: 15px;
+  border: 0px;
+  border-radius: 30px;
+  background-color: #4f30da;
+  color: white;
+  width: 130px;
+  height: 40px;
+  font-size: 18px;
+  text-align: center;
+}
+
+button:hover {
+  background-color: rgb(40, 40, 190);
+}
+
+b {
+  color: rgb(105, 1, 105);
+}
+
+.trial-not-visible {
+  display: none;
+}
+
+.centered-text {
+  text-align: center;
+}
