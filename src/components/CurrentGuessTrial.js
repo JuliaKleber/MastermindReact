@@ -54,8 +54,6 @@ const CurrentGuessTrial = ({
     // or CurrentTrial is increased by one.
     setHasWon(correctGuesses === numberInputFields);
     setHasLost(correctGuesses !== numberInputFields && isLastTrial);
-    console.log(currentTrial);
-    console.log(numberTrials - 1);
     if (!isLastTrial) setCurrentTrial(currentTrial + 1);
   };
 

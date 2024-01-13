@@ -1,8 +1,0 @@
-{
-  "projects": {
-    "default": "julias--mastermind",
-    "Julia's Mastermind": "julias--mastermind"
-  },
-  "targets": {},
-  "etags": {}
-}

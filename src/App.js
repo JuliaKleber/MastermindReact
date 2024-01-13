@@ -75,7 +75,7 @@ const App = () => {
           setHasWon={setHasWon}
           onResetGame={handleResetGame}
         />
-        {(!hasWon || (hasWon && (currentTrial === (numberTrials - 1)))) &&
+        {(!hasWon || (hasWon && (currentTrial === numberTrials))) &&
           <CurrentGuessTrial
             currentColor={currentColor}
             numberTrials={numberTrials}
