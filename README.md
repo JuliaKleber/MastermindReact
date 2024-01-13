@@ -15,7 +15,7 @@ Each guess is evaluated and the player is given feedback to help adjust their ne
 
 ## Link
 
-[Firebase link](https://julias--mastermind.web.app/)
+[Link to GitHub Pages](https://juliakleber.github.io/MastermindReact/)
 
 Optimized for Firefox
 
